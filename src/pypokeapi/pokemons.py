@@ -1,39 +1,53 @@
 from __future__ import annotations
-import httpx
-from request import Requester
-
+from pypokeapi.request import Requester
+from typing import Any
 
 class Image:
+    name:str
+    url:str
+
     def __init__(self, name:str, url:str):
         self.name = name
         self.url = url
 
-
 class Pokemon :
-    def __init__(self, data:dict[str, any], requester:Requester = None):
-        self.id:int = data['id']
-        self.name:str = data['name']
-        self.height:float = data['height']
-        self.image:Image = data['image']
-        self.order:int = data['order']
-        self.weight:float = data['weight']
+    id:int
+    name:str
+    height:float
+    image:list[Image]
+    order:int
+    weight:float
+    _requester:dict
+    _data:dict[str, Any]
+
+    def __init__(self, data:dict[str, Any], requester:Requester = None):
+        self.id = data['id']
+        self.name = data['name']
+        self.height = data['height']
+        self.image = data['sprites']
+        self.order = data['order']
+        self.weight = data['weight']
         self._requester = requester
         self._data = data
 
-    def get(attr:str)->dict[str, any]:
-        pass
+    def get(self, attr:str) -> dict[str, Any]:
+        return self._data[attr]
     
     @staticmethod
     def from_id(id:int, requester:Requester = None) -> Pokemon:
-        url:str = "https://pokeapi.co/api/v2/pokemon/" + id
-        r:httpx.Response = Requester.do_get(url)
-        pokemon:Pokemon = Pokemon(r.text)
+        if requester is None:
+            requester = Requester.Requester_default()
+        url:str = f"https://pokeapi.co/api/v2/pokemon/{id}"
+        data:dict[str] = Requester.do_get(url)
+        pokemon:Pokemon = Pokemon(data, requester)
         return pokemon
 
     @staticmethod
     def from_name(name:str, requester:Requester = None) -> Pokemon:
-        url:str = "https://pokeapi.co/api/v2/pokemon/" + name
-        r:httpx.Response = Requester.do_get(url)
-        pokemon:Pokemon = Pokemon(r.text)
+        if requester is None:
+            requester = Requester.Requester_default()
+        url:str = f"https://pokeapi.co/api/v2/pokemon/{name}"
+        data:dict[str] = Requester.do_get(url)
+        pokemon:Pokemon = Pokemon(data, requester)
         return pokemon
 
