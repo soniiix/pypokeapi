@@ -25,6 +25,11 @@ class Pokemon :
         self.name = data['name']
         self.height = data['height']
         self.image = data['sprites']
+
+        for name, url in data['sprites'].items():
+            if url is not None:
+                self.image.append(Image(name, url))
+
         self.order = data['order']
         self.weight = data['weight']
         self._requester = requester
