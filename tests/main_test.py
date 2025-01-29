@@ -25,3 +25,11 @@ def test_init_pokemon():
     }
     pokemon = Pokemon(data)
 
+    assert pokemon.id == 1
+    assert pokemon.name == "test"
+    assert pokemon.height == 3
+    assert pokemon.weight == 40
+    assert pokemon.order == 200
+    assert pokemon.image[0].name == "back_default"
+    assert pokemon.image[0].url == "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/384.png"
+
