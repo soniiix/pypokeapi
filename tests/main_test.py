@@ -5,11 +5,11 @@ def test_fetch_ditto():
     response = httpx.get("https://pokeapi.co/api/v2/pokemon/ditto")
     data = response.json()
     
-    assert data["name"] == "ditto"
     assert data["id"] == 132
-    assert data["height"] == 3
     assert data["name"] == "ditto"
+    assert data["height"] == 3
     assert data["weight"] == 40
+    assert data["order"] == 214
 
 def test_init_pokemon():
     data = {
@@ -33,3 +33,24 @@ def test_init_pokemon():
     assert pokemon.image[0].name == "back_default"
     assert pokemon.image[0].url == "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/384.png"
 
+def test_from_name():
+    pokemon = Pokemon.from_name("ditto")
+    
+    assert pokemon.id == 132
+    assert pokemon.name == "ditto"
+    assert pokemon.height == 3
+    assert pokemon.weight == 40
+    assert pokemon.order == 214
+    assert pokemon.image[0].name == "back_default"
+    assert pokemon.image[0].url == "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/132.png"
+
+def test_from_id():
+    pokemon = Pokemon.from_id(132)
+    
+    assert pokemon.id == 132
+    assert pokemon.name == "ditto"
+    assert pokemon.height == 3
+    assert pokemon.weight == 40
+    assert pokemon.order == 214
+    assert pokemon.image[0].name == "back_default"
+    assert pokemon.image[0].url == "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/132.png"
