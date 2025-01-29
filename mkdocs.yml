@@ -1,0 +1,16 @@
+site_name: PyPokeAPI
+theme:
+  name: material
+nav:
+  - Home: index.md
+  - Code API:
+    - Pokemon: pysrc/pokemons.md
+    - Requester: pysrc/request.md
+  - Unit Test:
+    - Case 1: pysrc/tests/test_case_1.md
+    - Case 2: pysrc/tests/test_case_2.md
+    - Case 3: pysrc/tests/test_case_3.md
+    - Case 4: pysrc/tests/test_case_4.md
+    - Case 5: pysrc/tests/test_case_5.md
+    - Case 6: pysrc/tests/test_case_6.md
+    - Case 7: pysrc/tests/test_case_7.md
