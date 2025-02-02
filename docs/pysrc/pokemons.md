@@ -1,3 +1,1 @@
-Class doc
-
-> Source code in `src/pypokeapi/pokemons.py`
+::: pypokeapi.pokemons.Pokemon
