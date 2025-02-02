@@ -15,4 +15,7 @@ nav:
     - Case 6: pysrc/tests/test_case_6.md
     - Case 7: pysrc/tests/test_case_7.md
 plugins:
-  - mkdocstrings
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [tests]
