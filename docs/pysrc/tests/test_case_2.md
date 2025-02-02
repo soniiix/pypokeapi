@@ -1,0 +1,1 @@
+:::main_test.test_init_pokemon
