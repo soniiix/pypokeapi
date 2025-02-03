@@ -1,5 +1,5 @@
 job:echo:
-  stage: .pre
+  stage: build
   image: alpine/git
   script:
     - export
