@@ -3,6 +3,6 @@ job:echo:
   image: alpine/git
   script:
     - export
-    - git log --graph
+    - echo "toto"
   tags:
     - pokemon
