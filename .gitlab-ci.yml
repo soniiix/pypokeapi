@@ -1,0 +1,8 @@
+job:echo:
+  stage: .pre
+  image: alpine/git
+  script:
+    - export
+    - git log --graph
+  tags:
+    - pokemon
