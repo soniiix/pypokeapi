@@ -1,6 +1,6 @@
 job:echo:
   stage: build
-  image: alpine/git
+  image: alpine
   script:
     - export
     - echo "toto"
